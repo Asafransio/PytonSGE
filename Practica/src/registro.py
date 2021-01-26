@@ -5,7 +5,7 @@ Created on 15 ene. 2021
 @author: 34669
 '''
 import random
-
+from statistics import mode, variance
 
 
 
@@ -44,10 +44,10 @@ for i in range(1000):
 
 file = open("fichero.txt", "w")
 
-file.write("Goles          - tal           - otro           - e           - u \n")
+file.write("Goles - tal - otro - e - u \n")
     
 for i in range(1000):
-    cadena = f"{str(n[i])}            - {str(m[i])}            - {str(p[i])}            - {str(q[i])}            - {str(r[i])}"
+    cadena = f"{str(n[i])} - {str(m[i])} - {str(p[i])} - {str(q[i])} - {str(r[i])}"
     file.write(cadena + "\n")
 
 file.close();
@@ -96,75 +96,30 @@ def mostrar():
             print(line)
             
 def modas():
-    #N
-    nAux = 0
-    for i in n:
-        j = n.count(i)
-        if j > nAux:
-            nAux = j
-        
-    modaN = []
-    
-    for i in n:
-        j = n.count(i)
-        if j == nAux and i not in modaN:
-            modaN.append(i)
-            
-    #M
-    mAux = 0
-    for i in m:
-        j = m.count(i)
-        if j > mAux:
-            mAux = j
-        
-    modaM = []
-    
-    for i in m:
-        j = m.count(i)
-        if j == mAux and i not in modaM:
-            modaM.append(i)
-    
-    #P
-    pAux = 0
-    for i in p:
-        j = p.count(i)
-        if j > pAux:
-            pAux = j
-        
-    modaP = []
-    
-    for i in p:
-        j = p.count(i)
-        if j == pAux and i not in modaP:
-            modaP.append(i)
-            
-    #Q
-    qAux = 0
-    for i in q:
-        j = q.count(i)
-        if j > qAux:
-            qAux = j
-        
-    modaQ = []
-    
-    for i in q:
-        j = q.count(i)
-        if j == qAux and i not in modaQ:
-            modaQ.append(i)
-            
-    #R
-    rAux = 0
-    for i in r:
-        j = r.count(i)
-        if j > rAux:
-            rAux = j
-        
-    modaR = []
-    
-    for i in r:
-        j = r.count(i)
-        if j == rAux and i not in modaR:
-            modaR.append(i)
+    aN = []
+    aM = []
+    aP = []
+    aQ = []
+    aR = []
+       
+    with open("fichero.txt") as file:
+        a = 0
+        for line in file:
+            if a == 0:
+                a+=1
+            else:
+                lista = line.split(" - ")
+                aN.append(lista[0])
+                aM.append(lista[1])
+                aP.append(lista[2])
+                aQ.append(lista[3])
+                aR.append(lista[4])
+                
+        modaN=mode(aN)
+        modaM=mode(aM)
+        modaP=mode(aP)
+        modaQ=mode(aQ)
+        modaR=mode(aR)
             
     #IMPRIMIR MODAS
     print(f"la moda de n es {modaN}")
@@ -174,11 +129,29 @@ def modas():
     print(f"la moda de r es {modaR}")
 
 def maximos():
-    maxN = max(n)
-    maxM = max(m)
-    maxP = max(p)
-    maxQ = max(q)
-    maxR = max(r)
+    aN = []
+    aM = []
+    aP = []
+    aQ = []
+    aR = []
+       
+    with open("fichero.txt") as file:
+        a = 0
+        for line in file:
+            if a == 0:
+                a+=1
+            else:
+                lista = line.split(" - ")
+                aN.append(lista[0])
+                aM.append(lista[1])
+                aP.append(lista[2])
+                aQ.append(lista[3])
+                aR.append(lista[4])
+        maxN = max(aN)
+        maxM = max(aM)
+        maxP = max(aP)
+        maxQ = max(aQ)
+        maxR = max(aR)
     
     print(f"el maximo de n es {maxN}")
     print(f"el maximo de m es {maxM}")
@@ -187,11 +160,29 @@ def maximos():
     print(f"el maximo de r es {maxR}")
 
 def minimos():
-    minN = min(n)
-    minM = min(m)
-    minP = min(p)
-    minQ = min(q)
-    minR = min(r)
+    aN = []
+    aM = []
+    aP = []
+    aQ = []
+    aR = []
+       
+    with open("fichero.txt") as file:
+        a = 0
+        for line in file:
+            if a == 0:
+                a+=1
+            else:
+                lista = line.split(" - ")
+                aN.append(lista[0])
+                aM.append(lista[1])
+                aP.append(lista[2])
+                aQ.append(lista[3])
+                aR.append(lista[4])
+        minN = min(aN)
+        minM = min(aM)
+        minP = min(aP)
+        minQ = min(aQ)
+        minR = min(aR)
     
     print(f"el minimo de n es {minN}")
     print(f"el minimo de m es {minM}")
@@ -200,50 +191,30 @@ def minimos():
     print(f"el minimo de r es {minR}")
 
 def varianzas():
-    #N
-    sumVarN = 0
-    for i in n:
-        n0 = n[i] - listaMedias[0]
-        n1= n0*n0
-        sumVarN+=n1
-        
-    varN = sumVarN/(len(n)-1)
-    
-    #M
-    sumVarM= 0
-    for i in m:
-        m0 = m[i] - listaMedias[1]
-        m1 = m0*m0
-        sumVarM += m1
-        
-    varM = sumVarM/(len(m)-1)
-    
-    #P
-    sumVarP = 0
-    for i in p:
-        p0 = p[i] - listaMedias[2]
-        p1= p0*p0
-        sumVarP += p1
-        
-    varP = sumVarP/(len(p)-1)
-    
-    #Q
-    sumVarQ = 0
-    for i in q:
-        q0 = q[i] - listaMedias[3]
-        q1 = q0*q0
-        sumVarQ += q1
-        
-    varQ = sumVarQ/(len(q)-1)
-    
-    #R
-    sumVarR = 0
-    for i in r:
-        r0 = r[i] - listaMedias[4]
-        r1 = r0*r0
-        sumVarR += r1
-        
-    varR = sumVarR/(len(r)-1)
+    aN = []
+    aM = []
+    aP = []
+    aQ = []
+    aR = []
+       
+    with open("fichero.txt") as file:
+        a = 0
+        for line in file:
+            if a == 0:
+                a+=1
+            else:
+                lista = line.split(" - ")
+                aN.append(int(lista[0]))
+                aM.append(int(lista[1]))
+                aP.append(int(lista[2]))
+                aQ.append(int(lista[3]))
+                aR.append(int(lista[4]))
+                
+        varN=variance(aN)
+        varM=variance(aM)
+        varP=variance(aP)
+        varQ=variance(aQ)
+        varR=variance(aR)
     
     print(f"la varianza de n es {varN}")
     print(f"la varianza de m es {varM}")
