@@ -26,6 +26,9 @@ q=[]
 r=[]
 listaMedias=[]
 listaModas=[]
+listaMax=[]
+listaMin=[]
+listaVar=[]
 
 
 
@@ -120,6 +123,12 @@ def modas():
         modaP=mode(aP)
         modaQ=mode(aQ)
         modaR=mode(aR)
+        
+        listaModas.append(modaN)
+        listaModas.append(modaM)
+        listaModas.append(modaP)
+        listaModas.append(modaQ)
+        listaModas.append(modaR)
             
     #IMPRIMIR MODAS
     print(f"la moda de n es {modaN}")
@@ -152,6 +161,12 @@ def maximos():
         maxP = max(aP)
         maxQ = max(aQ)
         maxR = max(aR)
+        
+        listaMax.append(maxN)
+        listaMax.append(maxM)
+        listaMax.append(maxP)
+        listaMax.append(maxQ)
+        listaMax.append(maxR)
     
     print(f"el maximo de n es {maxN}")
     print(f"el maximo de m es {maxM}")
@@ -183,6 +198,12 @@ def minimos():
         minP = min(aP)
         minQ = min(aQ)
         minR = min(aR)
+        
+        listaMin.append(minN)
+        listaMin.append(minM)
+        listaMin.append(minP)
+        listaMin.append(minQ)
+        listaMin.append(minR)
     
     print(f"el minimo de n es {minN}")
     print(f"el minimo de m es {minM}")
@@ -215,11 +236,37 @@ def varianzas():
         varP=variance(aP)
         varQ=variance(aQ)
         varR=variance(aR)
+        
+        listaVar.append(varN)
+        listaVar.append(varM)
+        listaVar.append(varP)
+        listaVar.append(varQ)
+        listaVar.append(varR)
     
     print(f"la varianza de n es {varN}")
     print(f"la varianza de m es {varM}")
     print(f"la varianza de p es {varP}")
     print(f"la varianza de q es {varQ}")
     print(f"la varianza de r es {varR}")
+    
+def darEstadisticas():
+    
+    listaEncabezado = ["Media", "Moda", "Maximo", "Minimo", "Varianza"]
+    
+    file = open("estadisticas.txt", "w")
+
+    file.write("*** - Goles - tal - otro - e - u \n")
+    
+    file.write(f"{listaEncabezado[0]} - {listaMedias[0]} - {listaMedias[1]} - {listaMedias[2]} - {listaMedias[3]} - {listaMedias[4]} \n")
+    
+    file.write(f"{listaEncabezado[1]} - {listaModas[0]} - {listaModas[1]} - {listaModas[2]} - {listaModas[3]} - {listaModas[4]} \n") 
+    
+    file.write(f"{listaEncabezado[2]} - {listaMax[0]} - {listaMax[1]} - {listaMax[2]} - {listaMax[3]} - {listaMax[4]} \n")
+    
+    file.write(f"{listaEncabezado[3]} - {listaMin[0]} - {listaMin[1]} - {listaMin[2]} - {listaMin[3]} - {listaMin[4]} \n")
+    
+    file.write(f"{listaEncabezado[4]} - {listaVar[0]} - {listaVar[1]} - {listaVar[2]} - {listaVar[3]} - {listaVar[4]} \n")
+
+    file.close();
 
 
